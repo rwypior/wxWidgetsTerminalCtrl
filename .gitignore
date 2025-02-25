@@ -1,0 +1,5 @@
+.vs/
+out/
+enc_temp_folder/
+CMakeUserPresets.json
+CMakeSettings.json

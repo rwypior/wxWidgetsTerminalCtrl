@@ -1,4 +1,4 @@
-#include "terminalCtrl.h"
+#include "wxterminal/terminalCtrl.h"
 
 #include <unordered_set>
 
@@ -54,7 +54,7 @@ TerminalCtrl::TerminalCtrl(wxWindow* parent, wxWindowID id,
 
 long TerminalCtrl::createDefaultStyle(long style)
 {
-    return style | wxTE_MULTILINE | wxTE_PROCESS_ENTER | wxTE_PROCESS_TAB | wxWS_EX_VALIDATE_RECURSIVELY;
+    return style | wxTE_MULTILINE | wxTE_PROCESS_ENTER | wxTE_PROCESS_TAB | wxTE_RICH | wxWS_EX_VALIDATE_RECURSIVELY;
 }
 
 void TerminalCtrl::setup()
