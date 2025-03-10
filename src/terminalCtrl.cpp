@@ -186,13 +186,13 @@ bool TerminalCtrl::insertionAtInput() const
 void TerminalCtrl::setInsertionAtEnd()
 {
     long pos = this->getPosition(this->getLastPoint());
-    this->DoSetSelection(pos, pos, 0);
+    this->SetSelection(pos, pos);
 }
 
 void TerminalCtrl::setInsertionAtPrompt()
 {
     long pos = this->getPosition(this->promptEndPosition);
-    this->DoSetSelection(pos, pos, 0);
+    this->SetSelection(pos, pos);
 }
 
 wxPoint TerminalCtrl::getPoint(long position) const
@@ -285,7 +285,7 @@ void TerminalCtrl::onCommand()
     ProcessWindowEvent(postevent);
 
     long last = this->getPosition(this->getLastPoint());
-    this->DoSetSelection(last, last, 0);
+    this->SetSelection(last, last);
 }
 
 bool TerminalCtrl::pointLt(const wxPoint& a, const wxPoint& b)
@@ -310,7 +310,7 @@ void TerminalCtrl::onChar(wxKeyEvent& event)
 
     if ((event.GetModifiers() & wxMOD_SHIFT) && event.GetKeyCode() == wxKeyCode::WXK_HOME && this->insertionAtLastLine())
     {
-        this->DoSetSelection(this->getPosition(this->promptEndPosition), to, 0);
+        this->SetSelection(this->getPosition(this->promptEndPosition), to);
         return;
     }
 
@@ -335,7 +335,7 @@ void TerminalCtrl::onChar(wxKeyEvent& event)
 
     if ((event.GetModifiers() & wxMOD_CONTROL) && std::tolower(event.GetKeyCode()) == 'a')
     {
-        this->DoSetSelection(0, this->getPosition(this->getLastPoint()), 0);
+        this->SetSelection(0, this->getPosition(this->getLastPoint()));
         return;
     }
 
@@ -389,7 +389,7 @@ void TerminalCtrl::AppendText(const wxString& text)
 
     if (this->noAppendProcessing)
     {
-        this->DoSetSelection(last, last, 0);
+        this->SetSelection(last, last);
         this->WriteText(text);
     }
     else
@@ -403,7 +403,7 @@ void TerminalCtrl::AppendText(const wxString& text)
         wxString prev = this->GetRange(selectionPoint - 1, selectionPoint);
         if (prev == "\n")
             from--;
-        this->DoSetSelection(from, to, 0);
+        this->SetSelection(from, to);
 
         this->WriteText(text + "\n");
 
@@ -415,7 +415,7 @@ void TerminalCtrl::AppendText(const wxString& text)
     this->noWriteProcessing = false;
 
     long pos = this->getPosition(this->promptEndPosition) + 1;
-    this->DoSetSelection(pos, pos, 0);
+    this->SetSelection(pos, pos);
     this->ScrollLines(this->promptEndPosition.y);
 }
 

@@ -1,5 +1,7 @@
 .vs/
 out/
+build/
 enc_temp_folder/
 CMakeUserPresets.json
 CMakeSettings.json
+*.swp
